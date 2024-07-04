@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Dashboard</title>
+    <title>Owner Dashboard</title>
     <style>
-        body {
+         body {
             background-image: url('/static/img/2.jpg');
             background-size: cover; /* 背景图片铺满整个页面 */
             background-position: center; /* 背景图片居中 */
@@ -20,8 +20,8 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: rgba(249, 249, 249, 0.8);
-            margin-bottom: 20px;
-            overflow-x: auto;
+            margin-bottom: 20px; /* 留出空间 */
+            overflow-x: auto; /* 横向滚动条 */
         }
 
         table {
@@ -63,56 +63,22 @@
 </head>
 <body>
     <div class="dashboard">
-        <h1>Welcome, Customer!</h1>
+    <header id="main-header">
+        <h1>查看订单</h1>
         <nav>
             <ul>
-                <li><a href="{{ url_for('view_membership_card', user_id=session['user_id']) }}">查看会员卡</a></li>
+                <li><a href="/owner_dashboard">返回仪表板</a></li>
                 <li><a href="/logout">登出</a></li>
             </ul>
         </nav>
-        <h2>Points: {{ points.points }}</h2>
-        
-        <h2>Coffees</h2>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-            </tr>
-            {% for coffee in coffees %}
-            <tr>
-                <td>{{ coffee.id }}</td>
-                <td>{{ coffee.name }}</td>
-                <td>{{ coffee.price }}</td>
-                <td>{{ coffee.quantity }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        
-        <h2>Place Order</h2>
-        <form method="post" action="{{ url_for('customer_dashboard') }}">
-            <label for="coffee_id">Coffee:</label>
-            <select id="coffee_id" name="coffee_id">
-                {% for coffee in coffees %}
-                <option value="{{ coffee.id }}">{{ coffee.name }}</option>
-                {% endfor %}
-            </select>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" max="100" value="1">
-            <label for="temperature">Temperature:</label>
-            <select id="temperature" name="temperature">
-                <option value="hot">Hot</option>
-                <option value="cold">Cold</option>
-            </select>
-            <input type="submit" value="Place Order">
-        </form>
-        
+    </header>
+    <div id="main" class="container">
         <h2>Orders</h2>
         <table>
             <tr>
                 <th>ID</th>
-                <th>coffee_id</th>
+                <th>User ID</th>
+                <th>Coffee ID</th>
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>Order Date</th>
@@ -121,6 +87,7 @@
             {% for order in orders %}
             <tr>
                 <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
                 <td>{{ order.coffee_id }}</td>
                 <td>{{ order.quantity }}</td>
                 <td>{{ order.total_price }}</td>
@@ -129,15 +96,9 @@
             </tr>
             {% endfor %}
         </table>
-
-        {% if order_success %}
-        <p>Order submitted successfully! You can view your order details below:</p>
-        <!-- Display order details here -->
-        {% endif %}
     </div>
-   
+    </div>
 </body>
-
 <script>
     var stop, staticx;
     var img = new Image();

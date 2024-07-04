@@ -189,5 +189,24 @@ BEGIN
 END
 ;;
 delimiter ;
+-- ----------------------------
+-- Table structure for membership_card
+-- ----------------------------
+CREATE TABLE `membership_card` (
+  `card_id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT NOT NULL,
+  `card_number` VARCHAR(50) UNIQUE NOT NULL,
+  `expiration_date` DATE NOT NULL,
+  `membership_level` VARCHAR(50) NOT NULL,
+  `points` INT DEFAULT 0,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
+-- ----------------------------
+-- Records of membership_card
+-- ----------------------------
+INSERT INTO `membership_card` (`card_id`, `user_id`, `card_number`, `expiration_date`, `membership_level`, `points`) VALUES
+(1, 2, '1234567890', '2025-12-31', 'Gold', 100),
+(2, 3, '0987654321', '2025-12-31', 'Silver', 50);
 SET FOREIGN_KEY_CHECKS = 1;
+

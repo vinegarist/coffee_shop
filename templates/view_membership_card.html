@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看会员卡</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #main-header {
+            background-color: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77d42a 3px solid;
+        }
+        #main-header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        #main {
+            padding: 20px;
+            margin-top: 30px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-details {
+            list-style: none;
+            padding: 0;
+        }
+        .card-details li {
+            padding: 10px;
+            border-bottom: 1px #ccc solid;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <h1>会员卡详情</h1>
+    </header>
+    <div id="main" class="container">
+        {% if card %}
+            <ul class="card-details">
+                <li>卡号: {{ card.card_number }}</li>
+                <li>到期日期: {{ card.expiration_date }}</li>
+                <li>会员等级: {{ card.membership_level }}</li>
+                <li>积分: {{ card.points }}</li>
+            </ul>
+        {% else %}
+            <p>该用户没有会员卡。</p>
+        {% endif %}
+    </div>
+</body>
+</html>

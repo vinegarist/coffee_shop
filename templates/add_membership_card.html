@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加会员卡</title>
+    <style>
+        /* CSS 样式与现有项目保持一致 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #main-header {
+            background-color: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77d42a 3px solid;
+        }
+        #main-header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        #main {
+            padding: 20px;
+            margin-top: 30px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form label {
+            margin: 10px 0 5px;
+        }
+        form input[type="text"], form input[type="date"], form input[type="submit"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <h1>添加会员卡</h1>
+    </header>
+    <div id="main" class="container">
+        <form action="/add_membership_card" method="post">
+            <label for="card_number">卡号:</label>
+            <input type="text" id="card_number" name="card_number" required><br>
+            
+            <label for="expiration_date">到期日期:</label>
+            <input type="date" id="expiration_date" name="expiration_date" required><br>
+            
+            <label for="membership_level">会员等级:</label>
+            <input type="text" id="membership_level" name="membership_level" required><br>
+            
+            <label for="user_id">用户ID:</label>
+            <input type="text" id="user_id" name="user_id" required><br>
+            
+            <input type="submit" value="添加会员卡">
+        </form>
+    </div>
+</body>
+</html>
